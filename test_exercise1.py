@@ -24,4 +24,14 @@ def test_basic():
     assert pig_latinify("is") == "isyay"
     assert pig_latinify("apple") == "appleyay"
 
-
+def test_non_alphabetic():
+    """
+    Test non-alphabetic words
+    """
+    non_alphabetic_words = ["sd12d", "a25d", ",.{}-", "2153", 2523, "get.it.done", True, 24.25, "two words"]
+    for item in non_alphabetic_words:
+        try:
+            assert pig_latinify(item)
+            assert False
+        except ValueError:
+            assert True
