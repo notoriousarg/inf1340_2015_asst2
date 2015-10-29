@@ -27,6 +27,10 @@ def pig_latinify(word):
 
     """
 
+    if not isinstance(word,basestring):
+        raise ValueError
+    if not word.isalpha():
+        raise ValueError
     if word[0] in VOWELS:
         result = word + "yay"
     else:
