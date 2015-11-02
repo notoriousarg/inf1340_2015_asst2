@@ -22,21 +22,23 @@ def find(input_string, substring, start, end):
 
     """
 
-    input_string_length = len(input_string)
     substring_length = len(substring)
 
 
-    for number in range(input_string_length-substring_length):
+    for number in range(start, end-substring_length+1):
         match = True
         for letter in range(substring_length):
             if not input_string[number + letter] == substring[letter]:
                 match = False
         if match == True:
             return number
+
+
+
     return -1
 
 
-
+find("This is an ex-parrot", "parrot", 0, 20)
 
 def multi_find(input_string, substring, start, end):
     """
@@ -47,7 +49,14 @@ def multi_find(input_string, substring, start, end):
     :raises:
 
     """
+    index = find(input_string,substring,start,end)
     result = ""
+    while not index == -1:
+        if not result == "":
+            result = result + ","
+        result = result + str(index)
+        index = find(input_string,substring,index + 1,end)
+
 
     return result
 

@@ -13,9 +13,14 @@ __copyright__ = "2015 Susan Sim"
 __license__ = "MIT License"
 
 
+def
+
+
 def union(table1, table2):
     """
     Perform the union set operation on tables, table1 and table2.
+
+
 
     :param table1: a table (a List of Lists)
     :param table2: a table (a List of Lists)
