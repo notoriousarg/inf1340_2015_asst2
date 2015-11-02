@@ -21,12 +21,21 @@ def find(input_string, substring, start, end):
     :raises:
 
     """
-    input_string_length = 100
-    subtsrting_length = 4
-    for number in range(input_string_length-subtsrting_length):
-        if input_string[number:subtsrting_length + number] == substring:
+
+    input_string_length = len(input_string)
+    substring_length = len(substring)
+
+
+    for number in range(input_string_length-substring_length):
+        match = True
+        for letter in range(substring_length):
+            if not input_string[number + letter] == substring[letter]:
+                match = False
+        if match == True:
             return number
     return -1
+
+
 
 
 def multi_find(input_string, substring, start, end):
