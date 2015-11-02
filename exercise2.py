@@ -21,6 +21,11 @@ def find(input_string, substring, start, end):
     :raises:
 
     """
+    input_string_length = 100
+    subtsrting_length = 4
+    for number in range(input_string_length-subtsrting_length):
+        if input_string[number:subtsrting_length + number] == substring:
+            return number
     return -1
 
 
