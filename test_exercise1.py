@@ -26,7 +26,7 @@ def test_basic():
 
 def test_non_alphabetic():
     """
-    Test non-alphabetic words
+    Test non-alphabetic strings and non-string inputs
     """
     non_alphabetic_words = ["sd12d", "a25d", ",.{}-", "2153", 2523, "get.it.done", True, 24.25, "two words"]
     for item in non_alphabetic_words:
