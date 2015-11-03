@@ -13,7 +13,16 @@ __copyright__ = "2015 Susan Sim"
 __license__ = "MIT License"
 
 
-def
+def table_match(table1, table2):
+    if len(table1[0]) == len(table2[0]):
+        match = True
+        for number in range(len(table1[0])):
+            if not table1[0][number] == table2[0][number]:
+                match = False
+        if match == True:
+            return True
+    return False
+
 
 
 def union(table1, table2):
@@ -28,6 +37,11 @@ def union(table1, table2):
     :raises: MismatchedAttributesException:
         if tables t1 and t2 don't have the same attributes
     """
+    if not table_match(table1, table2):
+        raise ERROR
+
+
+
     return []
 
 
