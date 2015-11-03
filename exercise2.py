@@ -17,14 +17,18 @@ def find(input_string, substring, start, end):
     Describe your function
 
     :param :
+        input_string is a string in which we search in
+        substring is a string in which we search for within input_string
+        start is an integer that specifies the starting index from where we start looking
+        end is an integer that specifies the end index of where we are looking
     :return:
+        an integer: the index position of the first occurrence of the substring within the input_string within indexes
+            start and end, otherwise, -1 if the substring could not be found within the indexes start and end.
     :raises:
 
     """
 
     substring_length = len(substring)
-
-
     for number in range(start, end-substring_length+1):
         match = True
         for letter in range(substring_length):
@@ -32,9 +36,6 @@ def find(input_string, substring, start, end):
                 match = False
         if match == True:
             return number
-
-
-
     return -1
 
 
