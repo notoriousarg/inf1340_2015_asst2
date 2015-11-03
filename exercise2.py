@@ -29,14 +29,17 @@ def find(input_string, substring, start, end):
     """
 
     substring_length = len(substring)
+    return_value = -1
     for number in range(start, end-substring_length+1):
-        match = True
+        match = True    # Assume string starting at this index matches, then compare.
+                        # If letter does not match, word does not match
         for letter in range(substring_length):
             if not input_string[number + letter] == substring[letter]:
-                match = False
-        if match == True:
-            return number
-    return -1
+                match = False   # Letter does not match, hence, word does not match
+        if match and return_value == -1:    # If no letter mismatch, and return_value is not set (first occurence),
+                                            # then store this index as the return_value
+            return_value = number
+    return return_value
 
 
 find("This is an ex-parrot", "parrot", 0, 20)
