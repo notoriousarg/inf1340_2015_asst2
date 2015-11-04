@@ -52,11 +52,12 @@ def union(table1, table2):
         raise MismatchedAttributesException
     union_list = []
     for item in table1:
-        union_list += item     #Deep copy of table1, including the schema
+        union_list.append(item)     #Deep copy of table1, including the schema
 
     for item in table2:
-        if item not in union_list
-            union_list += item
+        union_list.append(item)
+
+    union_list = remove_duplicates(union_list)
 
     return union_list
 
