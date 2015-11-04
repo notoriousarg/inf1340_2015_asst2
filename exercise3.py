@@ -39,12 +39,12 @@ def table_match(table1, table2):
 def union(table1, table2):
     """
     Perform the union set operation on tables, table1 and table2.
+    Everything in table1 and table2 is copied to a combined list and the helper function that removes duplicates is
+    called, such that only unique values remain.
 
-
-
-    :param table1: a table (a List of Lists)
-    :param table2: a table (a List of Lists)
-    :return: the resulting table
+    :param table1: List of lists with at least one list inside: the schema is the first list.
+    :param table2: List of lists with at least one list inside: the schema is the first list.
+    :return: A list of lists denoting a table with the union result
     :raises: MismatchedAttributesException:
         if tables t1 and t2 don't have the same attributes
     """
@@ -68,6 +68,11 @@ def intersection(table1, table2):
     """
     Describe your function
 
+    :param table1: List of lists with at least one list inside: the schema is the first list.
+    :param table2: List of lists with at least one list inside: the schema is the first list.
+    :return: A list of lists denoting a table with the intersection result
+    :raises: MismatchedAttributesException:
+        if tables t1 and t2 don't have the same attributes
     """
     if not table_match(table1, table2):
         raise MismatchedAttributesException
@@ -85,6 +90,11 @@ def difference(table1, table2):
     """
     Describe your function
 
+    :param table1: List of lists with at least one list inside: the schema is the first list.
+    :param table2: List of lists with at least one list inside: the schema is the first list.
+    :return: A list of lists denoting a table with the difference result of the difference of table1 to table2
+    :raises: MismatchedAttributesException:
+        if tables t1 and t2 don't have the same attributes
     """
     difference_table = []
     difference_table.append(table1[0])  # Attach extra copy of schema to difference_table
