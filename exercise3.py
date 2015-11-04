@@ -49,11 +49,16 @@ def union(table1, table2):
         if tables t1 and t2 don't have the same attributes
     """
     if not table_match(table1, table2):
-        raise ERROR
+        raise MismatchedAttributesException
+    union_list = []
+    for item in table1:
+        union_list += item     #Deep copy of table1, including the schema
 
+    for item in table2:
+        if item not in union_list
+            union_list += item
 
-
-    return []
+    return union_list
 
 
 def intersection(table1, table2):
