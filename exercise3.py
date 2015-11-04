@@ -14,14 +14,25 @@ __license__ = "MIT License"
 
 
 def table_match(table1, table2):
+    """
+    This function compares two list of lists (table1 and table2) and outputs True if the tables have the same
+        schema, or False otherwise. This is done first by comparing the lengths of the schema list. If different,
+        then the schemas do not match. Otherwise if the lengths of the schemas are the same, then we need to check
+        each item of the schema such that if one index from table1[0] fails to match its corresponding index in
+        table2[0], respective to their positions, then we can return False. If no such mis-match is found, True
+        is returned.
+    :param table1: List of lists with at least one list inside: the schema is the first list.
+    :param table2: List of lists with at least one list inside: the schema is the first list.
+    :return: True if table schema matches, or more specifically, if table1[0] and table2[0] are equivalent
+    """
+    match = True    #Assume the tables match unless some mismatch occurs.
     if len(table1[0]) == len(table2[0]):
-        match = True
         for number in range(len(table1[0])):
             if not table1[0][number] == table2[0][number]:
                 match = False
-        if match == True:
-            return True
-    return False
+    else:
+        match = False
+    return match
 
 
 
