@@ -50,16 +50,18 @@ def union(table1, table2):
     """
     if not table_match(table1, table2):
         raise MismatchedAttributesException
-    union_list = []
-    for item in table1:
-        union_list.append(item)     #Deep copy of table1, including the schema
+    union_table = []
 
-    for item in table2:
-        union_list.append(item)
+    for row in table1:
+        union_table.append(row)     #Deep copy of table1, including the schema
 
-    union_list = remove_duplicates(union_list)
+    for row in table2:
+        union_table.append(row)     #Deep copy of table2, including the schema
 
-    return union_list
+    union_table = remove_duplicates(union_table)    # Remove duplicates, including schema
+                                                    #   Only second+ occurence removed, so schema stays as first item
+
+    return union_table
 
 
 def intersection(table1, table2):
@@ -67,7 +69,16 @@ def intersection(table1, table2):
     Describe your function
 
     """
-    return []
+    if not table_match(table1, table2):
+        raise MismatchedAttributesException
+    # A intersect B = (A + B) - (A union B)
+    addition_table = []
+    for row in table1:
+        addition_table.append(row)
+    for row in table2:
+        addition_table.append(row)
+    union_table = union(table1,table2)
+    return difference(addition_table,union_table)
 
 
 def difference(table1, table2):
@@ -75,7 +86,17 @@ def difference(table1, table2):
     Describe your function
 
     """
-    return []
+    difference_table = []
+    difference_table.append(table1[0])  # Attach extra copy of schema to difference_table
+    for row in table1:
+        difference_table.append(row)    # Deep copy of table1, but with difference_table[0] and difference_table[1]
+                                        #   as the schema.
+
+    for row in table2:
+        if row in difference_table:             # First row of table2 should be the schema. The remove method only
+            difference_table.remove(row)        #   removes the first occurence of the schema, leaving the second.
+
+    return difference_table
 
 
 #####################
@@ -84,6 +105,7 @@ def difference(table1, table2):
 def remove_duplicates(l):
     """
     Removes duplicates from l, where l is a List of Lists.
+    Removes in such a way that the order is kept and later occurrences are removed
     :param l: a List
     """
 
