@@ -35,3 +35,15 @@ def test_non_alphabetic():
             assert False
         except ValueError:
             assert True
+
+def test_alphabetic_no_vowel():
+    """
+    Test alphabetic strings without vowels
+    """
+    alphabetic_words_without_vowels = ["hyd","jk","wrp","bcdfghjklmn"]
+    for item in alphabetic_words_without_vowels:
+        try:
+            assert pig_latinify(item)
+            assert False
+        except ValueError:
+            assert True
