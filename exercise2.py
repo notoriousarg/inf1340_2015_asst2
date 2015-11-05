@@ -41,9 +41,6 @@ def find(input_string, substring, start, end):
             return_value = number
     return return_value
 
-
-find("This is an ex-parrot", "parrot", 0, 20)
-
 def multi_find(input_string, substring, start, end):
     """
     Describe your function
