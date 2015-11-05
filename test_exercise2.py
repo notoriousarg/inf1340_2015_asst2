@@ -31,6 +31,20 @@ def test_find_not_present():
     assert find("Who lives in a pineapple under the sea", "sea", 0, 30) == -1
     assert find("", "parrot", 0, 0) == -1
 
+def test_find_substring_larger_than_input_string():
+    """
+    Test find function with a substring length larger than the input string length.
+    """
+    assert find("parrot", "This is an ex-parrot", 0, 6) == -1
+    assert find("", "parrot", 0, 0) == -1
+
+def test_find_substring_larger_than_input_string():
+    """
+    Test find function with an empty substring.
+    """
+    assert find("parrot", "", 0, 0) == -1
+    assert find("", "", 0, 0) == -1
+
 def test_multi_find_basic():
     """
     Test multi_find function.
@@ -61,3 +75,17 @@ def test_multi_find_basic_not_present():
     assert multi_find("Who lives in a pineapple under the sea", "spongebob", 0, 38) == ""
     assert multi_find("Who lives in a pineapple under the sea", "sea", 0, 30) == ""
     assert multi_find("", "ni", 0, 0) == ""
+
+def test_multi_find_substring_larger_than_input_string():
+    """
+    Test multi_find function with a substring length larger than the input string length.
+    """
+    assert multi_find("parrot", "This is an ex-parrot", 0, 6) == ""
+    assert multi_find("", "parrot", 0, 0) == ""
+
+def test_find_substring_larger_than_input_string():
+    """
+    Test multi_find function with an empty substring.
+    """
+    assert multi_find("parrot", "", 0, 0) == ""
+    assert multi_find("", "", 0, 0) == ""
