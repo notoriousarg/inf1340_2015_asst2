@@ -77,13 +77,11 @@ def intersection(table1, table2):
     if not table_match(table1, table2):
         raise MismatchedAttributesException
     # A intersect B = (A + B) - (A union B)
-    addition_table = []
+    union_table = []
     for row in table1:
-        addition_table.append(row)
-    for row in table2:
-        addition_table.append(row)
-    union_table = union(table1,table2)
-    return difference(addition_table,union_table)
+        if row in table2:
+            union_table.append(row)
+    return union_table
 
 
 def difference(table1, table2):
@@ -97,14 +95,11 @@ def difference(table1, table2):
         if tables t1 and t2 don't have the same attributes
     """
     difference_table = []
-    difference_table.append(table1[0])  # Attach extra copy of schema to difference_table
+    difference_table.append(table1[0])  # Attach a copy of schema to difference_table because schema would
+                                        #   not be added below
     for row in table1:
-        difference_table.append(row)    # Deep copy of table1, but with difference_table[0] and difference_table[1]
-                                        #   as the schema.
-
-    for row in table2:
-        if row in difference_table:             # First row of table2 should be the schema. The remove method only
-            difference_table.remove(row)        #   removes the first occurence of the schema, leaving the second.
+        if row not in table2:
+            difference_table.append(row)
 
     return difference_table
 
