@@ -23,9 +23,8 @@ def find(input_string, substring, start, end):
     :param substring: a string in which we search for within input_string
     :param start: an integer that specifies the starting index from where we start looking
     :param end: an integer that specifies the end index of where we are looking
-    :return:
-        an integer: the index position of the first occurrence of the substring within the input_string within indexes
-            start and end, otherwise, -1 if the substring could not be found within the indexes start and end.
+    :return: an integer: the index position of the first occurrence of the substring within the input_string within
+    indexes start and end, otherwise, -1 if the substring could not be found within the indexes start and end.
     :raises: N/A
 
     """
@@ -39,7 +38,7 @@ def find(input_string, substring, start, end):
             for substring_index in range(substring_length):
                 if input_string[input_string_index + substring_index] != substring[substring_index]:
                     match = False               # Letter does not match, hence, word does not match
-            if match and return_value == -1:    # If no letter mismatch, and return_value is not set (first occurence),
+            if match and return_value == -1:    # If no letter mismatch, and return_value is not set (first occurrence),
                                                 # then store this index as the return_value
                 return_value = input_string_index
     return return_value

@@ -38,7 +38,7 @@ def union(table1, table2):
         union_table.append(row)     #Deep copy of table2, including the schema
 
     union_table = remove_duplicates(union_table)    # Remove duplicates, including schema
-                                                    #   Only second+ occurence removed, so schema stays as first item
+                                                    # Only second + occurrence removed, so schema stays as first item
 
     return union_table
 
@@ -53,8 +53,7 @@ def intersection(table1, table2):
     :param table1: List of lists with at least one list inside: the schema is the first list.
     :param table2: List of lists with at least one list inside: the schema is the first list.
     :return: A list of lists denoting a table with the intersection result: the schema (list) remains as the first item.
-    :raises: MismatchedAttributesException:
-        if tables t1 and t2 don't have the same attributes
+    :raises: MismatchedAttributesException: if tables t1 and t2 don't have the same attributes.
     """
     if not table_match(table1, table2):
         raise MismatchedAttributesException
@@ -76,12 +75,11 @@ def difference(table1, table2):
     :param table1: List of lists with at least one list inside: the schema is the first list.
     :param table2: List of lists with at least one list inside: the schema is the first list.
     :return: A list of lists denoting a table with the difference result: the schema (list) remains as the first item.
-    :raises: MismatchedAttributesException:
-        if tables t1 and t2 don't have the same attributes
+    :raises: MismatchedAttributesException: if tables t1 and t2 don't have the same attributes.
     """
     difference_table = []
     difference_table.append(table1[0])  # Attach a copy of schema to difference_table because schema would
-                                        #   not be added below
+                                        # not be added below.
     for row in table1:
         if row not in table2:
             difference_table.append(row)
@@ -95,7 +93,7 @@ def difference(table1, table2):
 def remove_duplicates(l):
     """
     Removes duplicates from l, where l is a List of Lists.
-    Removes in such a way that the order is kept and later occurrences are removed
+    Removes in such a way that the order is kept and later occurrences are removed.
     :param l: a List
     """
 
@@ -111,11 +109,12 @@ def remove_duplicates(l):
 def table_match(table1, table2):
     """
     This function compares two list of lists (table1 and table2) and outputs True if the tables have the same
-        schema, or False otherwise. This is done first by comparing the lengths of the schema list. If different,
-        then the schemas do not match. Otherwise if the lengths of the schemas are the same, then we need to check
-        each item of the schema such that if one index from table1[0] fails to match its corresponding index in
-        table2[0], respective to their positions, then we can return False. If no such mis-match is found, True
-        is returned.
+    schema, or False otherwise. This is done first by comparing the lengths of the schema list. If different,
+    then the schemas do not match. Otherwise if the lengths of the schemas are the same, then we need to check
+    each item of the schema such that if one index from table1[0] fails to match its corresponding index in
+    table2[0], respective to their positions, then we can return False. If no such mis-match is found, True
+    is returned.
+
     :param table1: List of lists with at least one list inside: the schema is the first list.
     :param table2: List of lists with at least one list inside: the schema is the first list.
     :return: True if table schema matches, or more specifically, if table1[0] and table2[0] are equivalent
@@ -131,8 +130,7 @@ def table_match(table1, table2):
 
 class MismatchedAttributesException(Exception):
     """
-    Raised when attempting set operations with tables that
-    don't have the same attributes.
+    Raised when attempting set operations with tables that don't have the same attributes.
     """
     pass
 
