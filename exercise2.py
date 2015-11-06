@@ -18,6 +18,7 @@ def find(input_string, substring, start, end):
     lies between the start and the end indexes of the input_string. This function returns the index of the first
     character of the first occurrence of the substring in the input_string, or -1 otherwise. If the substring is
     an empty string, -1 will be returned.
+    The input is assumed to be the correct data types.
 
     :param input_string: a string in which we search in
     :param substring: a string in which we search for within input_string
@@ -49,6 +50,7 @@ def multi_find(input_string, substring, start, end):
     lies between the start and the end indexes of the input_string. This function uses the find() function.
     This function returns a string that contains the integer indices of the occurrences, delimited by commas. If the
     substring is empty, or if the substring is not found within the input_string, an empty string will be returned.
+    The input is assumed to be the correct data types.
 
     :param input_string: a string in which we search in
     :param substring: a string in which we search for within input_string
