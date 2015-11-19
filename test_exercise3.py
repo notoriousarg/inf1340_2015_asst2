@@ -47,7 +47,10 @@ PETS = [["Species", "Name"],
 # HELPER FUNCTIONS ##
 #####################
 def is_equal(t1, t2):
-    return set(map(tuple, t1)) == set(map(tuple, t2))
+    if t1 is None or t2 is None:
+        return t1 == t2
+    else:
+        return sorted(t1) == sorted(t2)
 
 
 ###################
@@ -128,9 +131,8 @@ def test_intersection():
     assert is_equal(PETS, intersection(PETS, PETS))
 
     # Nothing intersecting
-    result = [["Number", "Surname", "Age"]]
-    assert is_equal(result, intersection(OWNER, MANAGERS))
-    assert is_equal(result, intersection(MANAGERS, OWNER))
+    assert is_equal(None, intersection(OWNER, MANAGERS))
+    assert is_equal(None, intersection(MANAGERS, OWNER))
 
 def test_intersection_mismatch_schema():
     try:
@@ -164,12 +166,10 @@ def test_difference():
               [0003, "Hughes", 59]]
     assert is_equal(result, difference(EMPLOYEES, MANAGERS))
 
-    result = [["Number", "Surname", "Age"]]
-    assert is_equal(result, difference(MANAGERS, EMPLOYEES))
+    assert is_equal(None, difference(MANAGERS, EMPLOYEES))
 
     #Exactly the same table
-    result = [["Species", "Name"]]
-    assert is_equal(result, difference(PETS, PETS))
+    assert is_equal(None, difference(PETS, PETS))
 
     # Nothing intersecting
     assert is_equal(OWNER, difference(OWNER, MANAGERS))

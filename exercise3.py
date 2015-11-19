@@ -40,7 +40,10 @@ def union(table1, table2):
     union_table = remove_duplicates(union_table)    # Remove duplicates, including schema
                                                     # Only second + occurrence removed, so schema stays as first item
 
-    return union_table
+    if len(union_table) == 1: # No rows in final table
+        return
+    else:
+        return union_table
 
 
 def intersection(table1, table2):
@@ -61,7 +64,10 @@ def intersection(table1, table2):
     for row in table1:
         if row in table2:
             intersection_table.append(row)
-    return intersection_table
+    if len(intersection_table) == 1:  # No rows in final table
+        return
+    else:
+        return intersection_table
 
 
 def difference(table1, table2):
@@ -83,8 +89,10 @@ def difference(table1, table2):
     for row in table1:
         if row not in table2:
             difference_table.append(row)
-
-    return difference_table
+    if len(difference_table) == 1:    # No rows in final table
+        return
+    else:
+        return difference_table
 
 
 #####################
